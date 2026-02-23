@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '21'
+          java-version: "21"
 
       - name: Give permission to mvnw
         run: chmod +x mvnw
@@ -57,5 +57,5 @@ jobs:
           script: |
             docker stop spring-demo || true
             docker rm spring-demo || true
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-ci-demo:latest
-            docker run -d -p 8080:8080 --name spring-demo ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-ci-demo:latest
+            docker pull ${DOCKERHUB_USERNAME}/spring-boot-ci-demo:latest
+            docker run -d -p 8080:8080 --name spring-demo ${DOCKERHUB_USERNAME}/spring-boot-ci-demo:latest
