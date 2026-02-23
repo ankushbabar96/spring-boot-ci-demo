@@ -49,5 +49,8 @@ jobs:
           script: |
             docker stop spring-demo || true
             docker rm spring-demo || true
+            # Free port 8080 if any container is using it
+            docker ps -q --filter "publish=8080" | xargs -r docker stop
+            docker ps -aq --filter "publish=8080" | xargs -r docker rm
             docker pull $DOCKERHUB_USERNAME/spring-boot-ci-demo:latest
             docker run -d -p 8080:8080 --name spring-demo $DOCKERHUB_USERNAME/spring-boot-ci-demo:latest
