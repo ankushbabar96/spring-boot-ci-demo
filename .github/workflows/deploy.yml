@@ -45,7 +45,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          envs: DOCKERHUB_USERNAME   # ✅ THIS LINE FIXES EVERYTHING
+          envs: DOCKERHUB_USERNAME   
           script: |
             docker stop spring-demo || true
             docker rm spring-demo || true
